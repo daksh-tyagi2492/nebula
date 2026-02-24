@@ -11,7 +11,7 @@ import { useStore } from './hooks/useStore';
 import logo from './assets/logo.png';
 
 function App() {
-  const { ideas, teams, addIdea, clearTeams, clearIdeas, unassignAllIdeas, seedIdeas, assignRandomIdeaToTeam } = useStore();
+  const { ideas, teams, addIdea, clearTeams, clearIdeas, unassignAllIdeas, seedIdeas, assignRandomIdeaToTeam, reassignTeamIdea, shuffleAssignments } = useStore();
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const isRevealVisible = teams.some(t => t.assignedIdeaId);
@@ -155,6 +155,8 @@ function App() {
           }}
           onLogout={handleLogout}
           onSeed={seedIdeas}
+          onShuffle={shuffleAssignments}
+          onReassign={reassignTeamIdea}
           onAssign={handleAssign}
           onDownload={handleDownloadResults}
         />

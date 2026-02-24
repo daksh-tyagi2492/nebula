@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Activity } from 'lucide-react';
 import type { Idea, Team } from '../hooks/useStore';
 
-const AdminPanel = ({ teams, ideas, onClearTeams, onClearIdeas, onUnassignAll, onClose, onLogout, onSeed, onAssign, onDownload }: {
+const AdminPanel = ({ teams, ideas, onClearTeams, onClearIdeas, onUnassignAll, onClose, onLogout, onSeed, onShuffle, onReassign, onAssign, onDownload }: {
     teams: Team[],
     ideas: Idea[],
     onClearTeams: () => void,
@@ -12,6 +12,8 @@ const AdminPanel = ({ teams, ideas, onClearTeams, onClearIdeas, onUnassignAll, o
     onClose: () => void,
     onLogout: () => void,
     onSeed: () => void,
+    onShuffle: () => void,
+    onReassign: (id: string) => void,
     onAssign: (name: string) => void,
     onDownload: () => void
 }) => {
@@ -82,7 +84,17 @@ const AdminPanel = ({ teams, ideas, onClearTeams, onClearIdeas, onUnassignAll, o
                                             <span className="text-white font-bold">{team.name}</span>
                                             <Activity className="w-3 h-3 text-accent-cyan" />
                                         </div>
-                                        <span className="text-[10px] text-accent-cyan opacity-80 uppercase font-black truncate">{idea?.title || 'Unknown Genesis'}</span>
+                                        <div className="flex justify-between items-end">
+                                            <span className="text-[10px] text-accent-cyan opacity-80 uppercase font-black truncate max-w-[120px]">{idea?.title || 'Unknown Genesis'}</span>
+                                            <motion.button
+                                                whileHover={{ scale: 1.1, color: '#fff' }}
+                                                whileTap={{ scale: 0.9 }}
+                                                onClick={() => onReassign(team.id)}
+                                                className="font-mono text-[8px] uppercase tracking-widest text-white/30 border-b border-white/10 hover:border-white transition-all"
+                                            >
+                                                Reassign
+                                            </motion.button>
+                                        </div>
                                     </div>
                                 );
                             })}
@@ -109,6 +121,14 @@ const AdminPanel = ({ teams, ideas, onClearTeams, onClearIdeas, onUnassignAll, o
                                     className="w-full py-3 border border-accent-cyan/30 text-accent-cyan font-mono text-[10px] uppercase font-black transition-all"
                                 >
                                     Restore Default IDEAs
+                                </motion.button>
+                                <motion.button
+                                    whileHover={{ scale: 1.02, boxShadow: '0 0 20px rgba(0, 255, 255, 0.2)', backgroundColor: '#00ffff', color: '#000' }}
+                                    whileTap={{ scale: 0.98 }}
+                                    onClick={onShuffle}
+                                    className="w-full py-3 border border-accent-cyan/30 text-accent-cyan font-mono text-[10px] uppercase font-black transition-all"
+                                >
+                                    Shuffle All Assignments
                                 </motion.button>
                                 <motion.button
                                     whileHover={{ scale: 1.02, boxShadow: '0 0 20px rgba(239, 68, 68, 0.2)', backgroundColor: '#ef4444', color: '#fff' }}

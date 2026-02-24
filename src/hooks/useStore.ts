@@ -171,5 +171,41 @@ export const useStore = () => {
         });
     };
 
-    return { ideas, teams, addIdea, addTeams, clearTeams, clearIdeas, unassignAllIdeas, seedIdeas, allocateIdeas, assignRandomIdeaToTeam };
+    const reassignTeamIdea = (teamId: string) => {
+        setTeams(prev => {
+            const teamIndex = prev.findIndex(t => t.id === teamId);
+            if (teamIndex === -1) return prev;
+
+            const currentIdeaId = prev[teamIndex].assignedIdeaId;
+
+            // Count usage of each idea
+            const ideaUsage: Record<string, number> = {};
+            prev.forEach(t => {
+                if (t.assignedIdeaId) {
+                    ideaUsage[t.assignedIdeaId] = (ideaUsage[t.assignedIdeaId] || 0) + 1;
+                }
+            });
+
+            const availableIdeas = ideas.filter(idea => {
+                const usageCount = ideaUsage[idea.id] || 0;
+                return usageCount < 3 && idea.id !== currentIdeaId;
+            });
+
+            if (availableIdeas.length === 0) return prev;
+
+            const randomIndex = Math.floor(Math.random() * availableIdeas.length);
+            const selectedIdea = availableIdeas[randomIndex];
+
+            const updatedTeams = [...prev];
+            updatedTeams[teamIndex] = { ...updatedTeams[teamIndex], assignedIdeaId: selectedIdea.id };
+            return updatedTeams;
+        });
+    };
+
+    const shuffleAssignments = () => {
+        unassignAllIdeas();
+        setTimeout(() => allocateIdeas(), 0);
+    };
+
+    return { ideas, teams, addIdea, addTeams, clearTeams, clearIdeas, unassignAllIdeas, seedIdeas, allocateIdeas, assignRandomIdeaToTeam, reassignTeamIdea, shuffleAssignments };
 };
