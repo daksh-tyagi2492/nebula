@@ -12,7 +12,7 @@ const Hero = ({ ideasCount, teamsCount }: { ideasCount: number, teamsCount: numb
     const maskWidth = useTransform(scrollYProgress, [0, 0.2, 0.4], ['0%', '60%', '0%']);
 
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-20">
+        <section id="mission" className="relative min-h-screen flex items-center justify-center overflow-hidden py-20">
             <div className="absolute top-24 left-1/2 -translate-x-1/2 z-20 flex gap-8 md:gap-24 opacity-60">
                 <div className="text-center">
                     <span className="font-mono text-[8px] uppercase tracking-[0.4em] text-accent-cyan block mb-2">Total IDEAs</span>

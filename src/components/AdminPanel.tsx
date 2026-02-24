@@ -31,6 +31,7 @@ const AdminPanel = ({ teams, ideas, onClearTeams, onClearIdeas, onUnassignAll, o
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[210] bg-black/95 backdrop-blur-3xl p-12 overflow-y-auto"
+            data-lenis-prevent
         >
             <div className="max-w-[1400px] mx-auto">
                 <div className="flex justify-between items-end mb-20 border-b border-white/10 pb-12">

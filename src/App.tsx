@@ -14,9 +14,7 @@ function App() {
   const { ideas, teams, addIdea, clearTeams, clearIdeas, unassignAllIdeas, assignRandomIdeaToTeam } = useStore();
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isRevealVisible] = useState(() => {
-    return teams.some(t => t.assignedIdeaId);
-  });
+  const isRevealVisible = teams.some(t => t.assignedIdeaId);
 
   // Auto-redirect logic removed per user request
 

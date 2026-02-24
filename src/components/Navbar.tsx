@@ -22,16 +22,9 @@ const Navbar = ({ onAdminClick }: { onAdminClick: () => void }) => {
                     </div>
                 </motion.div>
                 <div className="hidden lg:flex items-center gap-12 font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-white/50">
-                    {['Mission', 'Ideas', 'Allocation'].map((item) => (
-                        <motion.a
-                            key={item}
-                            href={item === 'Mission' ? '#' : `#${item.toLowerCase()}`}
-                            whileHover={{ scale: 1.1, color: '#fff' }}
-                            className="transition-colors"
-                        >
-                            {item}
-                        </motion.a>
-                    ))}
+                    <motion.a href="#mission" whileHover={{ scale: 1.1, color: '#fff' }} className="transition-colors">Mission</motion.a>
+                    <motion.a href="#submit" whileHover={{ scale: 1.1, color: '#fff' }} className="transition-colors">Ideas</motion.a>
+                    <motion.a href="#teams" whileHover={{ scale: 1.1, color: '#fff' }} className="transition-colors">Allocation</motion.a>
                 </div>
                 <motion.button
                     whileHover={{ scale: 1.05, backgroundColor: '#fff', color: '#000' }}
