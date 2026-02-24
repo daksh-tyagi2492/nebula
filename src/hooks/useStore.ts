@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { DEFAULT_IDEAS } from '../data/defaultIdeas';
 
 export interface Idea {
     id: string;
@@ -18,7 +19,13 @@ export interface Team {
 export const useStore = () => {
     const [ideas, setIdeas] = useState<Idea[]>(() => {
         const saved = localStorage.getItem('hackathon_ideas');
-        return saved ? JSON.parse(saved) : [];
+        if (saved) return JSON.parse(saved);
+
+        return DEFAULT_IDEAS.map(idea => ({
+            ...idea,
+            id: Math.random().toString(36).substr(2, 9),
+            timestamp: Date.now(),
+        }));
     });
 
     const [teams, setTeams] = useState<Team[]>(() => {
@@ -150,5 +157,19 @@ export const useStore = () => {
         setTeams(prev => prev.map(t => ({ ...t, assignedIdeaId: undefined })));
     };
 
-    return { ideas, teams, addIdea, addTeams, clearTeams, clearIdeas, unassignAllIdeas, allocateIdeas, assignRandomIdeaToTeam };
+    const seedIdeas = () => {
+        setIdeas(prev => {
+            const existingTitles = new Set(prev.map(i => i.title.toLowerCase().trim()));
+            const newIdeas = DEFAULT_IDEAS
+                .filter(idea => !existingTitles.has(idea.title.toLowerCase().trim()))
+                .map(idea => ({
+                    ...idea,
+                    id: Math.random().toString(36).substr(2, 9),
+                    timestamp: Date.now(),
+                }));
+            return [...prev, ...newIdeas];
+        });
+    };
+
+    return { ideas, teams, addIdea, addTeams, clearTeams, clearIdeas, unassignAllIdeas, seedIdeas, allocateIdeas, assignRandomIdeaToTeam };
 };

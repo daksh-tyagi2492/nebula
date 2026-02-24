@@ -3,13 +3,15 @@ import { motion } from 'framer-motion';
 import { Activity } from 'lucide-react';
 import type { Idea, Team } from '../hooks/useStore';
 
-const AdminPanel = ({ teams, ideas, onClearTeams, onClearIdeas, onUnassignAll, onClose, onAssign, onDownload }: {
+const AdminPanel = ({ teams, ideas, onClearTeams, onClearIdeas, onUnassignAll, onClose, onLogout, onSeed, onAssign, onDownload }: {
     teams: Team[],
     ideas: Idea[],
     onClearTeams: () => void,
     onClearIdeas: () => void,
     onUnassignAll: () => void,
     onClose: () => void,
+    onLogout: () => void,
+    onSeed: () => void,
     onAssign: (name: string) => void,
     onDownload: () => void
 }) => {
@@ -40,6 +42,7 @@ const AdminPanel = ({ teams, ideas, onClearTeams, onClearIdeas, onUnassignAll, o
                     </div>
                     <div className="flex gap-6">
                         <button onClick={onDownload} className="px-8 py-3 border border-accent-cyan/20 bg-accent-cyan/10 hover:bg-accent-cyan hover:text-black transition-all font-mono text-[10px] font-bold uppercase tracking-widest text-accent-cyan">Export Data</button>
+                        <button onClick={onLogout} className="px-8 py-3 border border-red-500/20 bg-red-500/10 hover:bg-red-500 hover:text-white transition-all font-mono text-[10px] font-bold uppercase tracking-widest text-red-500">Log Out</button>
                         <button onClick={onClose} className="px-8 py-3 border border-white/20 hover:bg-white hover:text-black transition-all font-mono text-[10px] font-bold uppercase tracking-widest text-white">Terminate</button>
                     </div>
                 </div>
@@ -99,6 +102,7 @@ const AdminPanel = ({ teams, ideas, onClearTeams, onClearIdeas, onUnassignAll, o
                             </div>
 
                             <div className="space-y-4">
+                                <button onClick={onSeed} className="w-full py-3 border border-accent-cyan/30 text-accent-cyan font-mono text-[10px] uppercase font-black hover:bg-accent-cyan hover:text-black transition-all">Import PDF Ideas</button>
                                 <button onClick={onClearTeams} className="w-full py-3 border border-red-500/30 text-red-500 font-mono text-[10px] uppercase font-black hover:bg-red-500 hover:text-white transition-all">Reset Teams</button>
                                 <button onClick={onUnassignAll} className="w-full py-3 border border-orange-500/30 text-orange-500 font-mono text-[10px] uppercase font-black hover:bg-orange-500 hover:text-white transition-all">Unassign All</button>
                                 <button onClick={onClearIdeas} className="w-full py-3 border border-red-500/30 text-red-500 font-mono text-[10px] uppercase font-black hover:bg-red-500/10 hover:border-red-500 transition-all">Reset Ideas</button>
