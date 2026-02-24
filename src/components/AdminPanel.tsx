@@ -102,10 +102,38 @@ const AdminPanel = ({ teams, ideas, onClearTeams, onClearIdeas, onUnassignAll, o
                             </div>
 
                             <div className="space-y-4">
-                                <button onClick={onSeed} className="w-full py-3 border border-accent-cyan/30 text-accent-cyan font-mono text-[10px] uppercase font-black hover:bg-accent-cyan hover:text-black transition-all">Import PDF Ideas</button>
-                                <button onClick={onClearTeams} className="w-full py-3 border border-red-500/30 text-red-500 font-mono text-[10px] uppercase font-black hover:bg-red-500 hover:text-white transition-all">Reset Teams</button>
-                                <button onClick={onUnassignAll} className="w-full py-3 border border-orange-500/30 text-orange-500 font-mono text-[10px] uppercase font-black hover:bg-orange-500 hover:text-white transition-all">Unassign All</button>
-                                <button onClick={onClearIdeas} className="w-full py-3 border border-red-500/30 text-red-500 font-mono text-[10px] uppercase font-black hover:bg-red-500/10 hover:border-red-500 transition-all">Reset Ideas</button>
+                                <motion.button
+                                    whileHover={{ scale: 1.02, boxShadow: '0 0 20px rgba(0, 255, 255, 0.2)', backgroundColor: '#00ffff', color: '#000' }}
+                                    whileTap={{ scale: 0.98 }}
+                                    onClick={onSeed}
+                                    className="w-full py-3 border border-accent-cyan/30 text-accent-cyan font-mono text-[10px] uppercase font-black transition-all"
+                                >
+                                    Restore Default IDEAs
+                                </motion.button>
+                                <motion.button
+                                    whileHover={{ scale: 1.02, boxShadow: '0 0 20px rgba(239, 68, 68, 0.2)', backgroundColor: '#ef4444', color: '#fff' }}
+                                    whileTap={{ scale: 0.98 }}
+                                    onClick={onClearTeams}
+                                    className="w-full py-3 border border-red-500/30 text-red-500 font-mono text-[10px] uppercase font-black transition-all"
+                                >
+                                    Clear Registered Teams
+                                </motion.button>
+                                <motion.button
+                                    whileHover={{ scale: 1.02, boxShadow: '0 0 20px rgba(249, 115, 22, 0.2)', backgroundColor: '#f97316', color: '#fff' }}
+                                    whileTap={{ scale: 0.98 }}
+                                    onClick={onUnassignAll}
+                                    className="w-full py-3 border border-orange-500/30 text-orange-500 font-mono text-[10px] uppercase font-black transition-all"
+                                >
+                                    Reset All Assignments
+                                </motion.button>
+                                <motion.button
+                                    whileHover={{ scale: 1.02, boxShadow: '0 0 20px rgba(239, 68, 68, 0.2)', backgroundColor: 'rgba(239, 68, 68, 0.1)', borderColor: '#ef4444' }}
+                                    whileTap={{ scale: 0.98 }}
+                                    onClick={onClearIdeas}
+                                    className="w-full py-3 border border-red-500/30 text-red-500 font-mono text-[10px] uppercase font-black transition-all"
+                                >
+                                    Delete All IDEAs
+                                </motion.button>
                             </div>
                         </div>
                     </div>

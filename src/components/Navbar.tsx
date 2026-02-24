@@ -27,7 +27,7 @@ const Navbar = ({ onAdminClick }: { onAdminClick: () => void }) => {
                     <motion.a href="#teams" whileHover={{ scale: 1.1, color: '#fff' }} className="transition-colors">Allocation</motion.a>
                 </div>
                 <motion.button
-                    whileHover={{ scale: 1.05, backgroundColor: '#fff', color: '#000' }}
+                    whileHover={{ scale: 1.05, backgroundColor: 'rgba(0, 255, 255, 0.1)', color: '#00ffff', borderColor: '#00ffff', boxShadow: '0 0 20px rgba(0, 255, 255, 0.3)' }}
                     whileTap={{ scale: 0.95 }}
                     onClick={onAdminClick}
                     className="flex items-center gap-3 border border-white/20 px-6 py-2 transition-all font-mono text-[10px] font-bold uppercase tracking-widest text-white"

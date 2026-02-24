@@ -23,7 +23,12 @@ const AdminLogin = ({ onLogin }: { onLogin: () => void }) => {
                 <form onSubmit={handleLogin} className="space-y-8">
                     <input required type="text" placeholder="Username" className="w-full bg-white/5 border border-white/10 p-5 font-mono text-sm focus:border-white outline-none text-white" value={creds.user} onChange={e => setCreds({ ...creds, user: e.target.value })} />
                     <input required type="password" placeholder="Password" className="w-full bg-white/5 border border-white/10 p-5 font-mono text-sm focus:border-white outline-none text-white" value={creds.pass} onChange={e => setCreds({ ...creds, pass: e.target.value })} />
-                    <motion.button animate={error ? { x: [-10, 10, -10, 10, 0] } : {}} className={`w-full py-5 font-black uppercase text-sm transition-all flex items-center justify-center gap-4 ${error ? 'bg-red-600 text-white' : 'bg-white text-black hover:bg-accent-cyan'}`}>
+                    <motion.button
+                        whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(0, 255, 255, 0.3)' }}
+                        whileTap={{ scale: 0.95 }}
+                        animate={error ? { x: [-10, 10, -10, 10, 0] } : {}}
+                        className={`w-full py-5 font-black uppercase text-sm transition-all flex items-center justify-center gap-4 ${error ? 'bg-red-600 text-white' : 'bg-white text-black hover:bg-accent-cyan'}`}
+                    >
                         <span>{error ? 'Rejected' : 'Initialize'}</span>
                         <Cpu className="w-4 h-4" />
                     </motion.button>

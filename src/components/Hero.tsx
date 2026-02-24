@@ -85,7 +85,7 @@ const Hero = ({ ideasCount, teamsCount }: { ideasCount: number, teamsCount: numb
                         Exalted engineering meets absolute creative freedom. The premier national hackathon for architecting the next dimension.
                     </p>
                     <motion.a
-                        whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0, 255, 255, 0.3)" }}
+                        whileHover={{ scale: 1.05, backgroundColor: '#00ffff', color: '#000', boxShadow: "0 0 30px rgba(0, 255, 255, 0.5)" }}
                         whileTap={{ scale: 0.95 }}
                         href="#submit"
                         className="btn-elite"

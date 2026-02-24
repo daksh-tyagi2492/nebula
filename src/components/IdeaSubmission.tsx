@@ -57,8 +57,8 @@ const IdeaSubmission = ({ onAddIdea }: { onAddIdea: (idea: { title: string, cate
                             required rows={4} placeholder="Description of idea" className="w-full bg-transparent border-b border-white/10 py-4 font-display text-xl outline-none transition-colors" value={formData.description} onChange={e => setFormData({ ...formData, description: e.target.value })}
                         />
                         <motion.button
-                            whileHover={{ scale: 1.02, backgroundColor: 'rgba(0, 255, 255, 0.1)' }}
-                            whileTap={{ scale: 0.98 }}
+                            whileHover={{ scale: 1.05, backgroundColor: '#00ffff', color: '#000', boxShadow: '0 0 30px rgba(0, 255, 255, 0.5)' }}
+                            whileTap={{ scale: 0.95 }}
                             className="btn-elite w-full flex justify-center gap-6"
                         >
                             Synchronize Vision <ArrowUpRight className="w-6 h-6" />

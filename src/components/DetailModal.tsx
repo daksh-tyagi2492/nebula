@@ -23,12 +23,14 @@ const DetailModal = ({ isOpen, onClose, team, idea }: DetailModalProps) => {
                         {/* Background Decoration */}
                         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-accent-gold/5 rounded-full blur-[100px]" />
 
-                        <button
+                        <motion.button
+                            whileHover={{ scale: 1.1, backgroundColor: 'rgba(255, 255, 255, 0.1)', boxShadow: '0 0 15px rgba(255, 255, 255, 0.2)' }}
+                            whileTap={{ scale: 0.9 }}
                             onClick={onClose}
-                            className="absolute top-8 right-8 p-3 bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group"
+                            className="absolute top-8 right-8 p-3 bg-white/5 border border-white/10 transition-colors group"
                         >
                             <X className="w-4 h-4 text-white/50 group-hover:text-white" />
-                        </button>
+                        </motion.button>
 
                         <div className="relative z-10">
                             <div className="flex items-center gap-3 mb-10">
